@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function A(){
+    }
+    function B(){
+      return new A();
+    }
+    //构造函数内部，如果return一个引用类型的对象，则整个构造函数失效。而是返回这个引用类型的对象而已。
+    //new A()=new B()
+    A.prototype=new A();
+    B.prototype=new B();
+    var a=new A();
+    var b=new B();
+    console.log(a.__proto__==b.__proto__);//true
+  </script>
+</body>
+</html>

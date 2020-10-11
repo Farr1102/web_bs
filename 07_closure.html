@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //判断是不是闭包
+    //外层函数包裹要保护的变量和使用变量的内层函数
+    function fun(){
+      var n=999;//要保护的变量
+      nAdd=function(){ n++ };
+      //外层函数将内层函数返回到外部
+      return function(){ console.log(n); }
+    }
+    // 调用外层函数，获得了内层函数的对象，并保存在变量中，反复使用
+    var getN=fun();
+    //getN=function(){console.log(n)}
+    getN();//999
+    nAdd();
+    getN();//1000
+  </script>
+</body>
+</html>

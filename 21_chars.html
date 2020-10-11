@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //字符串中每个字母出现的次数；
+    var str="helloworld";
+    var arr=[];
+    for(var i=0;i<str.length;i++){
+      //获得当前字母
+      var char=str[i]
+      if(!arr[char]){
+        arr[char]=1;
+      }else{
+        arr[char]++;
+      }
+    }
+    console.log(arr);
+    //获得出现次数最多的字母
+    //maxChar暂存目前最多的字符
+    //count暂存目前字符的数量
+    var maxChar,count=0;
+    for(var key in arr){
+      if(arr[key]>count){
+        maxChar=key;
+        count=arr[key]
+      }
+    }
+    console.log(maxChar,count)
+  </script>
+</body>
+</html>

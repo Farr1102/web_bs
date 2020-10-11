@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function fun(o){
+      o.name="西西";
+      o={}; // o=new Object();
+      o.name="小丽";
+    }
+    var obj={name:"小红",age:11};
+    fun(obj);
+    console.log(obj);// name:"西西"  age:11
+  </script>
+</body>
+</html>

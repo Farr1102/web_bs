@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var search="?uname=dingding&upwd=123456&favs=swimming&favs=running&favs=basketball";
+    function search2obj(str){
+      //创建新对象
+      var obj={};
+      //去掉开头的？
+      str=str.slice(1);
+      //按&切割str
+      var arr=str.split("&");
+      //遍历每个子字符串
+      for(var s of arr){
+        //按=切割，将切割后的第一部分保存在变量key中，第二部分保存在value中
+        var [key,value]=s.split("=");
+        //如果数组中不包含key为下表的属性
+        if(obj[key]===undefined){
+          //就强行添加key为下标的属性并赋值
+          obj[key]=value;
+        }else{//否则如果包含，则把其中的值打散和后边的值组成一个数组
+          obj[key]=[].concat(obj[key],value);
+        }
+      }
+      return obj;
+    }
+    var obj=search2obj(search);
+    console.log(obj);
+  </script>
+</body>
+</html>

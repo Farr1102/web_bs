@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var a={};
+    var b={
+      key:"a"
+    };
+    var c={
+      key:"c"
+    };
+    a[b]="123";
+    //b是对象，底层会隐式将b转为字符串 toString()
+    //而Object的原型对象的toString不输出对象内容
+    //而是输出一个字符串："[object 类型名]"
+    //比如            :  "[object Array]" "[object Object]"
+    //a[b]==>a["[object Object]"]="123"
+    a[c]="456";
+    //同理 a[c]==>a["[object Object]"]="456"
+    console.log(a[b]);// 456
+  </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+  var url="http://localhost:5050/public/index.html?lid=5#top";
+  //先按://切割，取第0部分--protocol
+  var arr=url.split("://");
+  var protocol=arr[0];
+  //剩余部分保存在变量rest中继续执行后续操作
+  var rest=arr[1];
+  //再按#切割，取第一部分--hash
+  var arr=rest.split("#")
+  var hash=`#${arr[1]}`;
+  rest=arr[0];
+  //再按？切割，取第一部分--search
+  var arr=rest.split("?");
+  var search=arr[1];
+  rest=arr[0];
+  //再按/切割
+  var arr=rest.split("/");
+  //将数组的第一个元素踢出数组--主机名+端口号
+  var host=arr.shift();
+  //将剩余部分按/拼接形成相对路径
+  var pathname="/"+arr.join("/");
+  //将host再按： 切割，分成端口号和主机名
+  var arr=host.split(":");
+  var hostname=arr[0];
+  var host=arr[1];
+  console.log(protocol);
+  console.log(host);
+  console.log(hostname);
+  console.log(pathname);
+  console.log(search);
+  console.log(hash);
+
+
+  </script>
+</body>
+</html>

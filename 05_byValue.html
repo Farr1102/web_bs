@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //按值传递
+    var a=3;
+    var b=a;
+    b++;
+    console.log(a);//3
+
+
+    //引用类型
+    var arr=["包","包","包","包","包"];
+    var arr1=arr;
+    arr1.pop();
+    console.log(arr.length);//4
+  </script>
+</body>
+</html>

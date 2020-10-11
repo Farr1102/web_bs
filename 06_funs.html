@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function fun(){
+      for(var i=0,arr=[];i<3;i++){
+        arr[i]=function(){console.log(i)}
+      }
+      return arr;
+    }
+    var funs=fun();
+    funs[0]();//3
+    funs[1]();//3
+    funs[2]();//3
+  </script>
+</body>
+</html>
