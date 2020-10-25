@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>用call模拟实现bind</title>
+</head>
+<body>
+  <script>
+    Function.prototype.bind=function(...arr1){
+      var fun=this;
+      return function(...arr2){
+        fun.call(...arr1,...arr2);
+      }
+    }
+    function jisuan(base,bonus1,bonus2){
+      console.log(`${this.ename}的工资总共为${base+bonus1+bonus2}`)
+    }
+    var lilei={
+      ename:"Li Lei"
+    };
+    var js2=jisuan.bind(lilei,10000);
+    jisuan.call(lilei,10000,1000,1000)
+    js2(1000,2000);
+  </script>
+</body>
+</html>

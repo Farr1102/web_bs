@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>深克隆</title>
+</head>
+<body>
+  <script>
+    //浅克隆
+    function clone(oldObj){
+      var newObj={};
+      for(var key in oldObj){
+        newObj[key]=oldObj[key];
+      }
+      return newObj;
+    }
+    //完善
+    function clone1(oldObj){
+      if(oldObj==null){
+        return null;//return会终止函数的运行
+      }
+      if(typeof(oldObj)!=="object"){
+        return oldObj;
+      }
+      var newObj=Array.isArray(oldObj)?[]:{};
+      for(var key in oldObj){
+        newObj[key]=oldObj[key];
+      }
+      return newObj;
+    }
+    var a=[1,2,3];
+    var b={a:1}
+    console.log(clone1(b));
+    //浅克隆：只克隆第一级属性，如果某个属性中又是一个内嵌的子对象，不会进入子对象中克隆子对象中的内容
+    //深克隆：既克隆第一级属性，如果某个属性中又是一个内嵌的子对象，深克隆会进入子对象中，继续克隆内嵌子对象中的内容
+    //深克隆，用递归的方式，递归函数的原理就是创建了一个原函数的分身，继续调用
+    function deepClone(oldObj){
+      if(oldObj==null){
+        return null;//return会终止函数的运行
+      }
+      if(typeof(oldObj)!=="object"){
+        return oldObj;
+      }
+      var newObj=Array.isArray(oldObj)?[]:{};
+      for(var key in oldObj){
+        //遍历完每个属性时，先不着急赋值，再调用clone3函数，重新开始调用函数，return的值赋值给前边的属性
+        newObj[key]=deepClone(oldObj[key]);
+      }
+      return newObj;
+    }
+    var lilei={
+      sname:"Li Lei",
+      sage:11,
+      address:{
+        city:"北京",
+        street:"万寿路"
+      }
+    }
+    //如果用浅克隆的方法，内嵌的adderss对象会和原对象引用的是一个地址，没有克隆完全
+    //用深克隆的方法，会新创建一个address对象赋值给新的对象
+    var lilei2=deepClone(lilei);
+    console.log(lilei.adderss==lilei2.address);//false
+  </script>
+</body>
+</html>

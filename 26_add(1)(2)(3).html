@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //要求定义函数add，实现：alert(add(1)(2)(3))
+    //函数柯里化：可以连续给一个函数反复传参，反复传的参数，还能累计到函数内。
+    var add=function(x){
+      var sum=x;
+      var tmp=function(x){
+        sum+=x;
+        return tmp;
+      }
+      tmp.toString=function(){
+        return sum;
+      }
+      return tmp;
+    }
+    alert(add(1)(2)(3))
+  </script>
+</body>
+</html>

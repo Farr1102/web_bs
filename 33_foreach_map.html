@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>用原生js实现foreach和map</title> 
+</head>
+<body>
+  <script>
+    //foreach能遍历数组
+    Array.prototype.forEach=function(fun){
+      console.log(111)
+        for(var i=0;i<this.length;i++){
+          if(this[i]!==undefined){
+            fun(this[i],i,this)
+          }
+        }
+    }
+    //map能复制一个数组并对其中的元素进行操作
+    Array.prototype.map=function(fun){
+      var arr=[];
+      for(var i=0;i<this.length;i++){
+        if(this[i]!==undefined){
+          arr[i]=fun(this[i],i,this);
+        }
+      }
+      return arr;
+    }
+    var arr1=[1,,2,,3]
+    arr1.forEach(function(elem){
+      console.log(`${elem}--到！`)
+    })
+    var arr=arr1.map(function(elem){
+      return elem*2
+    })
+    console.log(arr)
+  </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var name="window";
+    var p={
+      name:"Peter",
+      getName(){
+        // var self=this;
+        return function(){
+          return self.name;
+        }
+      }
+    }
+    var getName=p.getName();
+    var _name=getName();
+    console.log(_name);//peter
+  </script>
+</body>
+</html>

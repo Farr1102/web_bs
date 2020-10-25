@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // "use strict";
+    function sidEffecting(arr){
+      arr[0]=arr[2];
+    }
+    function bar(a,b,c){
+      c=10;
+      sidEffecting(arguments);
+      return(a+b+c);
+    }
+    //旧js中，始终保持arguments中的元素的值与形参变量接住的实参值同步
+    //严格模式下 不再同步  ，输出13
+    console.log(bar(1,2,3))//22
+  </script>
+</body>
+</html>

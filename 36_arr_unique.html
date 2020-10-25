@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>数组去重</title>
+</head>
+<body>
+  <script>
+    //数组去重，有几种方法，那种方法最好（考虑数组中包含上万个元素）
+    //像一个数组中添加10万个数字，给个元素（0~10000之间）随机生成
+    for(var i=0,arr=[];i<100000;i++){
+      arr.push(parseInt(Math.random()*10000));
+    }
+    // console.log(arr);
+    //传统方式，利用对象的属性名不能重复
+    function unique1(arr){
+      var obj={};
+      var newArr=[];
+      for(var n of arr){
+        obj[n]=1;
+      }//如果是字符串类型的数组去重，可以用newArr=Object.keys(obj);
+      for(var key in obj){
+        newArr.push(parseInt(key));
+      }
+      return newArr;
+    }
+    console.time("unique1")//开始计时
+    console.log(unique1(arr));
+    console.timeEnd("unique1")//结束计时
+
+    //第二种，新es标准中的新类型Set
+    //Set类型的对象：是值不允许重复的集合
+    //向Set类型中添加新值时，如果Set中没有这个新值，才能添加进去，如果Set中已经有了这个新值了，则不再添加
+    // var set=new Set(arr);
+    // console.log([...set])
+    //可以简写为[...new Set(arr)];
+    //效率高
+    function unique2(arr){
+      return [...new Set(arr)]
+    };
+    console.time("unique2")
+    console.log(unique2(arr))
+    console.timeEnd("unique2")
+
+
+  </script>
+</body>
+</html>

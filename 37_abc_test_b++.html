@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    this.b='2';
+    function abc(){
+      let b=1;++b;
+      setTimeout(()=>{//定时器中的回调函数必须等主程序执行完才能开始执行
+        test('fun test');
+      },0);
+      setTimeout(
+      //函数名(实参值)——调用函数语法——立刻执行
+      test('test fun')
+      ,1000);
+      console.log(b);//b打印的是函数内的
+      function test(str){
+        this.b++;//上边两次调用this指向的都是window
+        console.log(str);
+        console.log(this.b++);
+      }
+    }
+    abc();// 'test fun' 3  2  'fun test'  5  
+  </script>
+</body>
+</html>

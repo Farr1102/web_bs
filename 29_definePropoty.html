@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>定义一个安全的构造函数（一个更像java的构造函数）</title>
+</head>
+<body>
+  <script>
+    function Emp(eid,ename,eage,salary,){
+      Object.defineProperties(this,{
+        eid:{
+          value:eid,
+          writable:false,
+          enumerable:true
+        },
+        ename:{
+          value:ename,
+          writable:false,
+          enumerable:true
+        },
+        salary:{
+          value:salary,
+          writable:true,
+          enumerable:false
+        },
+        _eage:{
+          writable:true,
+          enumerable:false
+        }
+        
+      });
+      this.eage=eage;
+      Object.seal(this);
+    }
+    Object.defineProperty(Emp.prototype,"eage",{
+      get:function(){
+        return this._eage;
+      },
+      set:function(value){
+        if(value>=18&&value<=65){
+          this._eage=value;
+        }else{
+          throw Error("年龄必须在18~65之间");
+        }
+      },
+      enumerable:true,
+      configurable:false
+    });
+    var lilei=new Emp(1,"李磊",-11,3000);
+  </script>
+</body>
+</html>

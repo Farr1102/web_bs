@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //主要是考效率、
+    //1.去掉数组中非数字字符，并给每个数字+1
+    var arr=[1,2,3,"a",4,"b"];
+    //如果要修改或删除数组中的元素，从后向前遍历，这样不会错过某一个元素
+    for(var i=arr.length-1;i>=0;i--){
+      if(typeof arr[i]=="number"){
+        arr[i]++;
+      }else{
+        arr.splice(i,1)
+      }
+    }
+    console.log(arr)
+    //2.在两个排好序的数组中，高效率的找出相同的元素，放入新数组
+    var arr1=[1,3,7,9,12,37,45];
+    var arr2=[2,4,9,13,45,88,92];
+    for(var i=0,j=0,result=[];i<arr1.length&&j<arr2.length;){
+      if(arr1[i]<arr2[j]){
+        i++;
+      }else if(arr1[i]>arr2[j]){
+        j++;
+      }else{
+        result.push(arr1[i]);//arr2[j]
+        i++;j++;
+      }
+    }
+    console.log(result);
+    //3.找出一个排好序的数组中，两个元素相加为19的元素组合，考虑程序的执行效率
+    var arr3=[1,2,4,6,7,11,12,15,17];
+    for(var i=0,j=arr3.length-1;i<j;){
+      if(arr3[i]+arr3[j]<19){
+        i++;
+      }else if(arr3[i]+arr3[j]>19){
+        j--;
+      }else{
+        console.log(`${arr3[i]},${arr3[j]}`)
+        i++;j--;
+      }
+    }
+  </script>
+</body>
+</html>

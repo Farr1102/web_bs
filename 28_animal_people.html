@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1 id="h1">新年</h1>
+  <script>
+    function Animal(name,age){
+      this.name=name;
+      this.age=age;
+    }
+    Animal.prototype.intr=function(){
+      console.log(`I'm ${this.name},I'm ${this,age}`)
+    }
+    //定义一个新的类型People，来继承这个Animal类型
+    //考的就是对class People extends Animal的原理
+    function People(name,age,className){
+      Animal.call(this,name,age);
+      this.className=className;
+    }
+    Object.setPrototypeOf(People.prototype,Animal.prototype);
+    var lilei=new People("Li Lei",11,"初一二班");
+    console.log(lilei.name);
+    console.log(lilei.age);
+    console.log(lilei.className);
+
+
+
+    //call的用法   call(thisobj,...)
+    function add(a,b){
+      alert(a+b);
+    }
+    function sub(a,b){
+      alert(a-b);
+    }
+    document.getElementById("h1").onclick=function(){
+      sub.call(add,3,1);
+    }
+   
+  </script>
+</body>
+</html>
