@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>模拟vue观察者模式</title>
+</head>
+<body>
+  <script>
+    let data={
+      money:1000,
+      setMoney(money){
+        this.money=money;
+        this.notifyAll();
+      },
+      observers:[],
+      notifyAll(){
+        this.observers.forEach(item=>{
+          item.getMoney();
+        })
+      }
+    };
+    let obj1={
+      money:0,
+      getMoney(){
+        this.money=data.money;
+      }
+    };
+    let obj2={
+      money:0,
+      getMoney(){
+        this.money=data.money;
+      }
+    };
+    let obj3={
+      money:0,
+      getMoney(){
+        this.money=data.money;
+      }
+    };
+    data.observers.push(obj1);
+    data.observers.push(obj2);
+    data.observers.push(obj3);
+    data.setMoney(900);
+    console.log(obj1.money,obj2.money,obj3.money);
+
+    data.setMoney(500);
+    console.log(obj1.money,obj2.money,obj3.money);
+
+  </script>
+</body>
+</html>

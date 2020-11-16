@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>防抖</title>
+</head>
+<body>
+  <div id="app">
+    <select v-model="pi">
+      <option v-for='(p,i) of provs' :key='i' :value='i'>{{p}}</option>
+    </select>
+    <select v-model="ci">
+      <option v-for='(c,i) of citys[pi]' :key='i' :value='i'>
+        {{c.name}}
+      </option>
+    </select>
+    <p>{{provs[pi]}},{{citys[pi][ci].name}}</p>
+  </div>
+  <script src="./js/vue.js"></script>
+  <script>
+    new Vue({
+      el:'#app',
+      data:{
+        pi:0,
+        ci:0,
+        provs:['北京','天津','河北'],
+        citys:[
+          [
+            { name:'海淀区',value:101},
+            { name:'朝阳区',value:102},
+            { name:'石景山区',value:103},
+          ],
+          [
+            { name:'河东区',value:201},
+            { name:'河西区',value:202},
+            { name:'南开区',value:203},
+          ],
+          [
+            { name:'石家庄',value:301},
+            { name:'邯郸',value:302},
+            { name:'唐山',value:303},
+            { name:'保定',value:304},
+          ],
+        ]
+      },
+    watch:{
+      pi(){
+        this.ci=0;
+      }
+    }
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>防抖</title>
+</head>
+<body>
+  <div id="app">
+    <input type="text" v-model="info" @keyup.13='search'><button @click="search">百度一下</button>
+  </div>
+  <script src="./js/vue.js"></script>
+  <script>
+    new Vue({
+      el:'#app',
+      data:{
+        info:'',
+        timer:null
+      },
+      methods:{
+        search(){
+          if(this.timer!=null){
+            clearTimeout(this.timer)
+          }
+          this.timer=setTimeout(()=>{
+            console.log(`正在查询${this.info}相关的内容...`)
+          },1000)
+        }
+      },
+      watch:{
+        info(){
+          this.search();
+        }
+      }
+    })
+  </script>
+</body>
+</html>

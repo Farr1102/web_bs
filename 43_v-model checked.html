@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <ul>
+      <li v-for='(p,i) of hobby' :key='i'>{{p.fname}} 
+        <input type="checkbox" v-model='p.checked'></li>
+    </ul>
+    <p>我的爱好有：</p>
+    <ul>
+      <li v-for='(p,i) of hobby' :key='i' v-show='p.checked==true'>
+        {{p.fname}}
+      </li>
+    </ul>
+  </div>
+  <script src="./js/vue.js"></script>
+  <script>
+    new Vue({
+      el:'#app',
+      data:{
+        hobby:[
+          {fname:'游泳',checked:false},
+          {fname:'游戏',checked:false},
+          {fname:'看书',checked:false},
+          {fname:'洗澡',checked:false}
+        ]
+      },
+
+    })
+  </script>
+</body>
+</html>
